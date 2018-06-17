@@ -78,7 +78,7 @@ def run():
    allscenes = (p
       | 'read_index' >> beam.io.ReadFromText(index_file)
       | 'to_scene' >> beam.Map(lambda line:  SceneInfo(line))
-      | 'by_area' >> beam.FlatMap(lambda scene: filterByArea(scene,lat+dlat,lon-dlon,lat-dlat,lon+dlon) )
+      | 'by_area' >> beam.FlatMap(lambda scene: filterByArea(scene,lat-dlat,lon-dlon,lat+dlat,lon+dlon) )
    )
 
    # for each month and spacecraft-coverage-pattern (given by the path and row), find clearest scene
