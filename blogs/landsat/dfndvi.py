@@ -71,14 +71,14 @@ def run():
    output_file = known_args.output_file
    output_dir = known_args.output_dir
 
-   lat =-21.1; lon = 55.50     # center of Reunion Island
-   dlat = 0.4; dlon = 0.4
+   lat =-2.05; lon = 110.52     # center of Reunion Island
+   dlat = 5; dlon = 5
 
    # Read the index file and find all scenes that cover this area
    allscenes = (p
       | 'read_index' >> beam.io.ReadFromText(index_file)
       | 'to_scene' >> beam.Map(lambda line:  SceneInfo(line))
-      | 'by_area' >> beam.FlatMap(lambda scene: filterByArea(scene,lat-dlat,lon-dlon,lat+dlat,lon+dlon) )
+      | 'by_area' >> beam.FlatMap(lambda scene: filterByArea(scene,lat-dlat,lon-dlon,lat+dlat,lon+dlon))
    )
 
    # for each month and spacecraft-coverage-pattern (given by the path and row), find clearest scene

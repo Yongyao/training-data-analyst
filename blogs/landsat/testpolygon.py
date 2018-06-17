@@ -54,14 +54,14 @@ def clearest(scenes):
 # self.NORTH_LAT, self.SOUTH_LAT, self.WEST_LON, self.EAST_LON  
 lines = [line.rstrip('\n') for line in open('/Users/yjiang/Documents/pythonWorkspace/treemap/Data/2015index.txt')]
 scenes = []
-lat =-21.1; lon = 55.50     # center of Reunion Island
+lat =-2.05; lon = 110.52     # center of Reunion Island
 dlat = 5; dlon = 5
 for line in lines:
     scene = SceneInfo(line)
     # if scene.intersects(lat+dlat,lon-dlon,lat-dlat,lon+dlon):
     if scene.intersects(lat-dlat,lon-dlon,lat+dlat,lon+dlon):
         scenes.append(scene)
-        scene.printInfo()
+        # scene.printInfo()
 
 print len(scenes)
 
