@@ -3,7 +3,6 @@
 import apache_beam as beam
 import argparse
 from google.cloud import storage
-from google.cloud.storage import Blob
 # import subprocess
 
 def list_blobs(bucket_name, input_folder):
@@ -31,6 +30,7 @@ def run():
    input_bucket = known_args.input_bucket
    
    scenes = list_blobs(input_bucket, input_folder)
+   scenes = list_blobs('eostest', 'gs://eotest/landsat/output/2015-01/')
     
 #==============================================================================
 #    ret = subprocess.check_call(['gsutil', 'du', input_folder])

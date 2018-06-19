@@ -101,11 +101,12 @@ class CustomCommands(setuptools.Command):
 # restriction is specified.
 REQUIRED_PACKAGES = [
     'numpy',
+    'google-cloud-storage'
     ]
 
 
 setuptools.setup(
-    name='landsatmonthly',
+    name='ndvi',
     version='0.0.1',
     description='Monthly landsat workflow package.',
     install_requires=REQUIRED_PACKAGES,
