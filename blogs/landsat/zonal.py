@@ -3,7 +3,7 @@
 import apache_beam as beam
 import argparse
 from google.cloud import storage
-# import subprocess
+import getZonal
 
 def list_blobs(bucket_name, input_folder):
     storage_client = storage.Client()
@@ -20,7 +20,9 @@ def run():
    parser = argparse.ArgumentParser(description='Compute zonal NDVI')
    parser.add_argument('--input_folder', required=True, help='Which folder should the ndvi images be retreived?')
    parser.add_argument('--input_bucket', required=True, help='Which bucket should the ndvi images be retreived?')
+   parser.add_argument('--input_vec', required=True, help='Which bucket should the vector be retreived?')
    parser.add_argument('--output_file', default='output.txt', help='default=output.txt Supply a location on GCS when running on cloud')
+   parser.add_argument('--output_folder')
 
    known_args, pipeline_args = parser.parse_known_args()
  
@@ -28,18 +30,12 @@ def run():
    output_file = known_args.output_file
    input_folder = known_args.input_folder
    input_bucket = known_args.input_bucket
+   input_shp = known_args.input_vec
+   output_folder = known_args.output_folder
    
-   scenes = list_blobs(input_bucket, input_folder)
-   scenes = list_blobs('eostest', 'gs://eotest/landsat/output/2015-01/')
-    
-#==============================================================================
-#    ret = subprocess.check_call(['gsutil', 'du', input_folder])
-#    scenes = []
-#    for f in ret:
-#        scenes.append(f.split()[1])
-#==============================================================================
+   scenes = list_blobs(input_bucket, input_folder)    
 
-   # Read the index file and find all scenes that cover this area
+   # Get all file names from the input folder
    allscenes = (p
       | 'get_scenes' >> beam.Create(scenes)
    )
@@ -47,6 +43,8 @@ def run():
    # write out info about scene
    allscenes | beam.Map(lambda (scene): '{}'.format(scene)) | 'scene_info' >> beam.io.WriteToText(output_file)
 
+   # compute zonal ndvi
+   scenes | 'compute_zonal_stats' >> beam.Map(lambda (scene): getZonal.calZonal('gs://'+ input_bucket + '/'+ input_shp, 'gs://'+ input_bucket + '/' + scene, output_folder))
 
    p.run()
 

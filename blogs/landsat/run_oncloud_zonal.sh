@@ -20,7 +20,9 @@ python ./zonal.py \
     --autoscaling_algorithm=THROUGHPUT_BASED \
     --input_folder=landsat/output/2015-01/ \
     --input_bucket=$BUCKET \
+    --input_vec=shp/palm_reproj \
     --output_file=gs://$BUCKET/zonal/output/scenes.txt \
+    --output_folder=gs://$BUCKET/zonal/output \
     --job_name=zonal-ndvi \
     --save_main_session \
     --setup_file=./setup.py

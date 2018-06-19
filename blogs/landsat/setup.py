@@ -102,6 +102,7 @@ class CustomCommands(setuptools.Command):
 REQUIRED_PACKAGES = [
     'numpy',
     'google-cloud-storage'
+    'rasterstats'
     ]
 
 
