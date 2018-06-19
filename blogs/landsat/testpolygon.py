@@ -20,7 +20,8 @@ class SceneInfo:
         self.EAST_LON = float(self.EAST_LON)
         self.CLOUD_COVER = float(self.CLOUD_COVER)
       except:
-        print "WARNING! format error on {", line, "}"        
+        self.DATE_ACQUIRED = None
+        # print "WARNING! format error on {", line, "}"        
 
    def contains(self, lat, lon):
       return (lat > self.SOUTH_LAT) and (lat < self.NORTH_LAT) and (lon > self.WEST_LON) and (lon < self.EAST_LON)
@@ -52,22 +53,53 @@ def clearest(scenes):
       return None
 
 # self.NORTH_LAT, self.SOUTH_LAT, self.WEST_LON, self.EAST_LON  
-lines = [line.rstrip('\n') for line in open('/Users/yjiang/Documents/pythonWorkspace/treemap/Data/2015index.txt')]
-scenes = []
-lat =-2.05; lon = 110.52     # center of Reunion Island
-dlat = 5; dlon = 5
-for line in lines:
-    scene = SceneInfo(line)
-    # if scene.intersects(lat+dlat,lon-dlon,lat-dlat,lon+dlon):
-    if scene.intersects(lat-dlat,lon-dlon,lat+dlat,lon+dlon):
-        scenes.append(scene)
-        # scene.printInfo()
+# lines = [line.rstrip('\n') for line in open('/Users/yjiang/Downloads/index.csv')]
 
-print len(scenes)
+fh = open('/Users/yjiang/Documents/pythonWorkspace/treemap/Data/2015index.txt')
+# fh = open('/Users/yjiang/Downloads/index.csv')
+f = open('/Users/yjiang/Downloads/index_13_17.txt','w')
 
-# tlat = 5; tlon = 5
-# print scenes[0].intersects(lat-tlat,lon-tlon,lat+tlat,lon+tlon)
-# -20.61508 -22.72789 54.6966 56.92609
+with open('/Users/yjiang/Downloads/index.csv') as fh:
+       for line in fh:
+           scene = SceneInfo(line)
+           if scene.DATE_ACQUIRED:
+               yr = scene.DATE_ACQUIRED.year
+               if yr>=2013 and yr<=2017:
+                   f.write(line)
+
+#==============================================================================
+# line = fh.readline()
+# while True:
+#     # read line
+#     line = fh.readline()
+#     scene = SceneInfo(line)
+#     if scene.DATE_ACQUIRED==None: continue
+#     # print line
+#     yr = scene.DATE_ACQUIRED.year
+#     if yr>=2013 and yr<=2017:
+#         f.write(line)
+#     # check if line is not empty
+#     if not line:
+#         break
+#==============================================================================
+
+# fh.close()
+f.close()
+    
+
+#==============================================================================
+# scenes = []
+# lat =-2.05; lon = 110.52     # center of Reunion Island
+# dlat = 5; dlon = 5
+# for line in lines:
+#     scene = SceneInfo(line)
+#     # if scene.intersects(lat+dlat,lon-dlon,lat-dlat,lon+dlon):
+#     if scene.intersects(lat-dlat,lon-dlon,lat+dlat,lon+dlon):
+#         scenes.append(scene)
+#         # scene.printInfo()
+# 
+# print len(scenes)
+#==============================================================================
 
 
 

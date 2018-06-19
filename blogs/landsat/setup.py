@@ -64,7 +64,7 @@ class build(_build):  # pylint: disable=invalid-name
 # worker-startup log.
 CUSTOM_COMMANDS = [
     ['apt-get', 'update'],
-    ['apt-get', '--assume-yes', 'install', 'python-gdal'],
+    ['apt-get', '--assume-yes', 'install', 'python-gdal', 'libgdal-dev'],
 ]
 
 
