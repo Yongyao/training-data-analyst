@@ -72,8 +72,13 @@ def run():
    output_file = known_args.output_file
    output_dir = known_args.output_dir
 
-   lat =-2.05; lon = 110.52     # center of Reunion Island
-   dlat = 5; dlon = 5
+   # Indonesia
+   # lat =-2.05; lon = 110.52     # center of Reunion Island
+   # dlat = 5; dlon = 5
+
+   # Brazil
+   lat =-13.26; lon = -52.87
+   dlat = 18; dlon = 18
 
    # Read the index file and find all scenes that cover this area
    allscenes = (p

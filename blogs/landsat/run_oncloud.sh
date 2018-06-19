@@ -9,18 +9,18 @@ fi
 PROJECT=$1
 BUCKET=$2
 
-gsutil -m rm -rf gs://$BUCKET/landsat/output
+gsutil -m rm -rf gs://$BUCKET/landsat-brazil/output
 
 python ./dfndvi.py \
     --project=$PROJECT \
     --runner=DataflowRunner \
-    --staging_location=gs://$BUCKET/landsat/staging \
-    --temp_location=gs://$BUCKET/landsat/staging \
-    --index_file=gs://cloud-training-demos/landsat/2015index.txt.gz \
-    --max_num_workers=10 \
+    --staging_location=gs://$BUCKET/landsat-brazil/staging \
+    --temp_location=gs://$BUCKET/landsat-brazil/staging \
+    --index_file=gs://mck-earth-observations/index/index_13_17.txt \
+    --max_num_workers=20 \
     --autoscaling_algorithm=THROUGHPUT_BASED \
-    --output_file=gs://$BUCKET/landsat/output/scenes.txt \
-    --output_dir=gs://$BUCKET/landsat/output \
+    --output_file=gs://$BUCKET/landsat-brazil/output/scenes.txt \
+    --output_dir=gs://$BUCKET/landsat-brazil/output \
     --job_name=monthly-landsat \
     --save_main_session \
     --setup_file=./setup.py
