@@ -18,7 +18,8 @@ python ./zonal.py \
     --temp_location=gs://$BUCKET/zonal/staging \
     --max_num_workers=10 \
     --autoscaling_algorithm=THROUGHPUT_BASED \
-    --input_folder=gs://$BUCKET/landsat/output/2015-01/* \
+    --input_folder=gs://$BUCKET/landsat/output/2015-01/ \
+    --input_bucket=$BUCKET \
     --output_file=gs://$BUCKET/zonal/output/scenes.txt \
     --job_name=zonal-ndvi \
     --save_main_session \
