@@ -42,14 +42,14 @@ class VecCopy():
       for prefix in self.prefix_list: 
           os.remove( self.dest + prefix) # cleanup     
 
-def calZonal(shp_path, raster_path, output_folder): 
+def computeZonal(shp_path, raster_path, output_folder): 
     with RasterCopy(raster_path, '.') as raster, \
      VecCopy(shp_path, '.') as vec :
          
          tmpfilename = os.path.join(tempfile.gettempdir(), '{0}_zonal.txt'.format(os.path.basename(raster_path)))
          f = open(tmpfilename,'w')
 
-         stats = zonal_stats(vec, raster, stats="mean")
+         stats = zonal_stats(vec, str(raster), stats="mean")
          for stat in stats:
              f.write(stat['mean'])
          f.close()

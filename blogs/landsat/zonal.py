@@ -44,7 +44,7 @@ def run():
    allscenes | beam.Map(lambda (scene): '{}'.format(scene)) | 'scene_info' >> beam.io.WriteToText(output_file)
 
    # compute zonal ndvi
-   scenes | 'compute_zonal_stats' >> beam.Map(lambda (scene): getZonal.calZonal('gs://'+ input_bucket + '/'+ input_shp, 'gs://'+ input_bucket + '/' + scene, output_folder))
+   allscenes | 'compute_zonal_stats' >> beam.Map(lambda (scene): getZonal.computeZonal('gs://'+ input_bucket + '/'+ input_shp, 'gs://'+ input_bucket + '/' + scene, output_folder))
 
    p.run()
 
