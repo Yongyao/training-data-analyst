@@ -49,10 +49,10 @@ def computeZonal(shp_path, raster_path, output_folder):
          tmpfilename = os.path.join(tempfile.gettempdir(), '{0}_zonal.txt'.format(os.path.basename(raster_path)))
          f = open(tmpfilename,'w')
 
-         stats = zonal_stats(vec, str(raster), stats="mean")
+         stats = zonal_stats(vec, str(raster), stats=['count', 'mean'])
          # important to convert numeric value to string
          for stat in stats:
-             f.write(str(stat['mean']) + '\n')
+             f.write(str(stat['mean']) + ',' + str(stat['count']) + '\n')
          f.close()
          
          outfilename = os.path.join(output_folder, '{0}_zonal.txt'.format(os.path.basename(raster_path)) )

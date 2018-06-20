@@ -19,9 +19,9 @@ def run():
    import os
    parser = argparse.ArgumentParser(description='Compute zonal NDVI')
    parser.add_argument('--input_folder', required=True, help='Which folder should the ndvi images be retreived?')
-   parser.add_argument('--input_bucket', required=True, help='Which bucket should the ndvi images be retreived?')
-   parser.add_argument('--input_vec', required=True, help='Which bucket should the vector be retreived?')
-   parser.add_argument('--output_file', default='output.txt', help='default=output.txt Supply a location on GCS when running on cloud')
+   parser.add_argument('--input_bucket', required=True)
+   parser.add_argument('--input_vec', required=True, help='Which folder should the vector be retreived?')
+   parser.add_argument('--output_file', default='output.txt')
    parser.add_argument('--output_folder')
 
    known_args, pipeline_args = parser.parse_known_args()
