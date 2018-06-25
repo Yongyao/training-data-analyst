@@ -64,7 +64,7 @@ class build(_build):  # pylint: disable=invalid-name
 # worker-startup log.
 CUSTOM_COMMANDS = [
     ['apt-get', 'update'],
-    ['apt-get', '--assume-yes', 'install', 'python-gdal', 'libgdal-dev'],
+    ['apt-get', '--assume-yes', 'install', 'python-gdal'],
 ]
 
 
@@ -101,8 +101,7 @@ class CustomCommands(setuptools.Command):
 # restriction is specified.
 REQUIRED_PACKAGES = [
     'numpy',
-    'google-cloud-storage'
-    'rasterstats'
+    'scikit-learn'
     ]
 
 
@@ -112,7 +111,7 @@ setuptools.setup(
     description='Monthly landsat workflow package.',
     install_requires=REQUIRED_PACKAGES,
     packages=setuptools.find_packages(),
-    py_modules=['zonal', 'getZonal'],
+    py_modules=['dfndvi', 'ndvi'],
     cmdclass={
         # Command class instantiated and run during pip install scenarios.
         'build': build,
