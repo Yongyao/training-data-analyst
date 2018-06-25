@@ -78,7 +78,7 @@ def run():
 
    # Brazil
    lat =-13.26; lon = -52.87
-   dlat = 18; dlon = 18
+   dlat = 0.4; dlon = 0.4  #18
 
    # Read the index file and find all scenes that cover this area
    allscenes = (p

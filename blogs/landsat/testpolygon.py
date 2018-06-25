@@ -55,14 +55,15 @@ def clearest(scenes):
 # self.NORTH_LAT, self.SOUTH_LAT, self.WEST_LON, self.EAST_LON  
 # lines = [line.rstrip('\n') for line in open('/Users/yjiang/Downloads/index.csv')]
 
-fh = open('/Users/yjiang/Documents/pythonWorkspace/treemap/Data/2015index.txt')
+# fh = open('/Users/yjiang/Documents/pythonWorkspace/treemap/Data/2015index.txt')
 # fh = open('/Users/yjiang/Downloads/index.csv')
-f = open('/Users/yjiang/Downloads/index_13_17.txt','w')
+f = open('/Users/yjiang/Downloads/index_13_17_small_test.txt','w')
 
 with open('/Users/yjiang/Downloads/index.csv') as fh:
        for line in fh:
            scene = SceneInfo(line)
-           if scene.DATE_ACQUIRED:
+           if scene.DATE_ACQUIRED is not None:
+               print line
                yr = scene.DATE_ACQUIRED.year
                if yr>=2013 and yr<=2017:
                    f.write(line)
