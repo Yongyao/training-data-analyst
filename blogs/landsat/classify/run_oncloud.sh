@@ -13,7 +13,6 @@ gsutil -m rm -rf gs://$BUCKET/landsat-clf/output
 
 python ./dfndvi.py \
     --project=$PROJECT \
-    --runner=DataflowRunner \
     --staging_location=gs://$BUCKET/landsat-clf/staging \
     --temp_location=gs://$BUCKET/landsat-clf/staging \
     --index_file=gs://$BUCKET/index/index_13_17_small.txt \
