@@ -13,6 +13,7 @@ gsutil -m rm -rf gs://$BUCKET/landsat-clf/output
 
 python ./dfndvi.py \
     --project=$PROJECT \
+    --runner=DataflowRunner \
     --staging_location=gs://$BUCKET/landsat-clf/staging \
     --temp_location=gs://$BUCKET/landsat-clf/staging \
     --index_file=gs://$BUCKET/index/index_13_17_small.txt \
@@ -22,5 +23,6 @@ python ./dfndvi.py \
     --output_dir=gs://$BUCKET/landsat-clf/output \
     --model_dir=gs://eotest-207015-mlengine/model.joblib \
     --job_name=monthly-landsat-clf \
+    --machine_type=n1-highmem-16 \
     --save_main_session \
     --setup_file=./setup.py
