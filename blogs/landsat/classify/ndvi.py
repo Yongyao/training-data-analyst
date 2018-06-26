@@ -14,7 +14,8 @@ limitations under the License.
 """
 
 import sys
-import osgeo.gdal as gdal
+# import osgeo.gdal as gdal
+from osgeo import gdal, gdal_array
 import os
 import os.path
 import subprocess
@@ -92,7 +93,7 @@ def computeNdvi(gs_baseurl, outdir, instrument, model_url):
      blue = blue_ds.GetRasterBand(1).ReadAsArray()
      red = red_ds.GetRasterBand(1).ReadAsArray()
      nir = nir_ds.GetRasterBand(1).ReadAsArray()
-     img = np.zeros((img_ds.RasterYSize, img_ds.RasterXSize, img_ds.RasterCount), gdal_array.GDALTypeCodeToNumericTypeCode(red_ds.GetRasterBand(1).DataType))
+     img = np.zeros((nir_ds.RasterYSize, nir_ds.RasterXSize, 4), gdal_array.GDALTypeCodeToNumericTypeCode(red_ds.GetRasterBand(1).DataType))
      img[:, :, 0] = green
      img[:, :, 1] = blue
      img[:, :, 2] = red
@@ -105,7 +106,7 @@ def computeNdvi(gs_baseurl, outdir, instrument, model_url):
 
      # create mask image
      mask_landsat = np.zeros((rows, cols))
-     mask_landsat[~np.isnan(landsat[:, :, 1])] = 1
+     mask_landsat[~np.isnan(img[:, :, 1])] = 1
      mask = mask_landsat
 
      # handle missing value

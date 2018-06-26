@@ -20,7 +20,7 @@ python ./dfndvi.py \
     --autoscaling_algorithm=THROUGHPUT_BASED \
     --output_file=gs://$BUCKET/landsat-clf/output/scenes.txt \
     --output_dir=gs://$BUCKET/landsat-clf/output \
-    --model_dir=gs://$BUCKET/eotest-207015-mlengine/model.joblib \
+    --model_dir=gs://eotest-207015-mlengine/model.joblib \
     --job_name=monthly-landsat-clf \
     --save_main_session \
     --setup_file=./setup.py
