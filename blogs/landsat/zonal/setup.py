@@ -101,7 +101,7 @@ class CustomCommands(setuptools.Command):
 # restriction is specified.
 REQUIRED_PACKAGES = [
     'numpy',
-    'google-cloud-storage'
+    'google-cloud-storage',
     'rasterstats'
     ]
 
