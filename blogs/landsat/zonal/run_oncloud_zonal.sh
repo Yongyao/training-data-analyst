@@ -23,6 +23,7 @@ python ./zonal.py \
     --input_vec=shp-brazil/bra_saveas \
     --output_file=gs://$BUCKET/zonal/scenes.txt \
     --output_folder=gs://$BUCKET/zonal/output \
+    --machine_type=n1-highmem-16 \
     --job_name=zonal-ndvi \
     --save_main_session \
     --setup_file=./setup.py
