@@ -18,9 +18,9 @@ python ./zonal.py \
     --temp_location=gs://$BUCKET/zonal/staging \
     --max_num_workers=10 \
     --autoscaling_algorithm=THROUGHPUT_BASED \
-    --input_folder=landsat/output/2015-01/ \
+    --input_folder=landsat-brazil/output/2013-01/ \
     --input_bucket=$BUCKET \
-    --input_vec=shp/palm_reproj \
+    --input_vec=shp-brazil/bra_saveas \
     --output_file=gs://$BUCKET/zonal/scenes.txt \
     --output_folder=gs://$BUCKET/zonal/output \
     --job_name=zonal-ndvi \
