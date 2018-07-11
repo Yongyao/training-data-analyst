@@ -23,6 +23,6 @@ python ./dfndvi.py \
     --output_dir=gs://$BUCKET/landsat-clf/output \
     --model_dir=gs://$BUCKET/model/model.joblib \
     --job_name=monthly-landsat-clf \
-    --machine_type=n1-highmem-16 \
+    --worker_machine_type=n1-highmem-16 \
     --save_main_session \
     --setup_file=./setup.py
